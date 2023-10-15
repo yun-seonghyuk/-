@@ -1,0 +1,65 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="DBPKG.Util"%>
+<%@page import="java.sql.Connection"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>count</title>
+</head>
+<body>
+<jsp:include page="header.jsp"/>
+<section style="position: fixed; top: 70px; left: 0px; width: 100%; height: 100%; background-color: lightgray">
+<h2 style="text-align: center">근무일수집계</h2>
+<form style="display: flex; align-items: center; justify-content: center; text-align: center">
+	<table border="1" >
+		<tr>
+			<td>사원번호</td>
+			<td>이름</td>
+			<td>부서명</td>
+			<td>근무일수</td>
+		</tr>
+		<%
+			request.setCharacterEncoding("utf-8");
+			
+			try{
+				Connection conn = Util.getConnection();
+				String sql = "select em.empno, empname, deptcode, count(resvno) "+
+							" from tbl_emp202108 em, tbl_resv_202108 re "+
+							" whrer em.empno=re.empno "+
+							" group by em.empno, empname, deptcode "+
+							" order by deptcode";
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery();
+				
+				while(rs.next()){
+					String deptcode = rs.getString(1);
+					if(deptcode.equals("10")){
+						deptcode = "영업팀";
+					} else if(deptcode.equals("20")){
+						deptcode = "총무팀";
+					} else if(deptcode.equals("30")){
+						deptcode = "구매팀";
+					}
+		%>
+					<tr>	
+						<td><%=rs.getString(1) %></td>
+						<td><%=deptcode %></td>
+						<td><%=rs.getString(3) %></td>
+						<td><%=rs.getString(4) %></td>
+					</tr>
+		<% 			
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		%>
+	</table>
+</form>
+</section>
+<jsp:include page="footer.jsp"/>
+</body>
+</html>

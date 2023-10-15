@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<servers>
+  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers/Tomcat v8.5 Server at localhost-config" deployDir="wtpwebapps" hostname="localhost" id="Tomcat v8.5 Server at localhost" name="Tomcat v8.5 Server at localhost" runtime-id="Apache Tomcat v8.5" server-type="org.eclipse.jst.server.tomcat.85" server-type-id="org.eclipse.jst.server.tomcat.85" start-timeout="45" stop-timeout="15" testEnvironment="true" timestamp="9">
+    <list key="modules" value0="HRD_10700::org.eclipse.jst.jee.server:HRD_10700::jst.web::3.1" value1="java_assignment::org.eclipse.jst.jee.server:java_assignment::jst.web::3.1" value2="HRD_10600::org.eclipse.jst.jee.server:HRD_10600::jst.web::3.1" value3="HRD_10800::org.eclipse.jst.jee.server:HRD_10800::jst.web::3.1" value4="golf::org.eclipse.jst.jee.server:golf::jst.web::3.1" value5="school::org.eclipse.jst.jee.server:school::jst.web::3.1"/>
+  </server>
+</servers>
